@@ -162,7 +162,7 @@ const descriptionContainer = document.getElementById("description-container");
  const totalGamesUnfunded = listUnfunded.length; // --> 7
 
 
-const texxxt = ` totlal $${formatMoney} has been raised for ${totalGames} games. Currently, ${totalGamesUnfunded} game remains unfunded. We need your help to fund these amazing games!`
+const texxxt = ` total: $${formatMoney} has been raised for ${totalGames} games. games remaining: ${totalGamesUnfunded}  unfunded.`
 const displayStr = texxxt;
 
 // create a string that explains the number of unfunded games using the ternary operator
