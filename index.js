@@ -26,26 +26,62 @@ function deleteChildElements(parent) {
 const gamesContainer = document.getElementById("games-container");
 
 // create a function that adds all data from the games array to the page
+// function addGamesToPage(games) {
+
+//     // loop over each item in the data
+
+
+//         // create a new div element, which will become the game card
+
+
+//         // add the class game-card to the list
+
+
+//         // set the inner HTML using a template literal to display some info 
+//         // about each game
+//         // TIP: if your images are not displaying, make sure there is space
+//         // between the end of the src attribute and the end of the tag ("/>")
+
+
+//         // append the game to the games-container
+
+// }
+
 function addGamesToPage(games) {
 
     // loop over each item in the data
-
+    for (let i = 0; i < games.length; i++){
+        
+        const game = games[i]; // i made this so that each game from JSON is called instead of retyping in the innerHTML part
 
         // create a new div element, which will become the game card
-
-
+        const div = document.createElement("div");
         // add the class game-card to the list
-
-
+        div.classList.add("game-card");
         // set the inner HTML using a template literal to display some info 
         // about each game
         // TIP: if your images are not displaying, make sure there is space
         // between the end of the src attribute and the end of the tag ("/>")
-
+        
+        div.innerHTML = 
+            `<p>Name: ${game.name}</p>
+            <p>Description: ${game.description}</p>
+            <img src = "${game.img}" alt = "image of the game" class = "game-img" />`
+        ;
 
         // append the game to the games-container
+        gamesContainer.appendChild(div);
+
+    }
 
 }
+
+
+addGamesToPage(GAMES_JSON); // Call the function to add games to the page
+
+
+
+
 
 // call the function we just defined using the correct variable
 // later, we'll call this function using a different list of games
@@ -61,19 +97,32 @@ function addGamesToPage(games) {
 const contributionsCard = document.getElementById("num-contributions");
 
 // use reduce() to count the number of total contributions by summing the backers
-
+// reduce ( function, starting_point)
+// function is an anonymous arrow function which takes in 2 parameters, (sum_variable, array(i)) that sums the backers of each game
+// (accumulator, current) => {ret accumulator + current.property}
+// this function is saying: go thr each game, the starting sum is 0. ret sum + the backer of game 0, game 1, game 2 each iteration
+const totalContributions = GAMES_JSON.reduce( (sum, games) => {return sum + games.backers}, 0); 
 
 // set the inner HTML using a template literal and toLocaleString to get a number with commas
+const formatContributions = totalContributions.toLocaleString(); // Format the number with commas
+contributionsCard.innerHTML = `${formatContributions}`;
 
 
 // grab the amount raised card, then use reduce() to find the total amount raised
+// same thing as backers, but for $$ pledged, code copy and pasted
 const raisedCard = document.getElementById("total-raised");
-
+const totalMoney = GAMES_JSON.reduce( (sum, games) => {return sum + games.pledged}, 0);
+const formatMoney = totalMoney.toLocaleString(); // Format the number with commas
 // set inner HTML using template literal
-
+raisedCard.innerHTML = `$${formatMoney}`;
 
 // grab number of games card and set its inner HTML
 const gamesCard = document.getElementById("num-games");
+const totalGames = GAMES_JSON.length;
+const formatGames = totalGames.toLocaleString(); // Format the number with commas
+// set inner HTML using template literal
+gamesCard.innerHTML = `${formatGames}`;
+
 
 
 /*************************************************************************************
