@@ -97,10 +97,6 @@ addGamesToPage(GAMES_JSON); // Call the function to add games to the page
 const contributionsCard = document.getElementById("num-contributions");
 
 // use reduce() to count the number of total contributions by summing the backers
-// reduce ( function, starting_point)
-// function is an anonymous arrow function which takes in 2 parameters, (sum_variable, array(i)) that sums the backers of each game
-// (accumulator, current) => {ret accumulator + current.property}
-// this function is saying: go thr each game, the starting sum is 0. ret sum + the backer of game 0, game 1, game 2 each iteration
 const totalContributions = GAMES_JSON.reduce( (sum, games) => {return sum + games.backers}, 0); 
 
 // set the inner HTML using a template literal and toLocaleString to get a number with commas
@@ -108,21 +104,18 @@ const formatContributions = totalContributions.toLocaleString(); // Format the n
 contributionsCard.innerHTML = `${formatContributions}`;
 
 
-// grab the amount raised card, then use reduce() to find the total amount raised
-// same thing as backers, but for $$ pledged, code copy and pasted
-const raisedCard = document.getElementById("total-raised");
+// setting rcard
+const rCard = document.getElementById("total-raised");
 const totalMoney = GAMES_JSON.reduce( (sum, games) => {return sum + games.pledged}, 0);
 const formatMoney = totalMoney.toLocaleString(); // Format the number with commas
 // set inner HTML using template literal
-raisedCard.innerHTML = `$${formatMoney}`;
+rCard.innerHTML = `$${formatMoney}`;
 
-// grab number of games card and set its inner HTML
 const gamesCard = document.getElementById("num-games");
-const totalGames = GAMES_JSON.length;
-const formatGames = totalGames.toLocaleString(); // Format the number with commas
-// set inner HTML using template literal
-gamesCard.innerHTML = `${formatGames}`;
+const totalGames = GAMES_JSON.length.toLocaleString();
 
+// set inner HTML using template literal
+gamesCard.innerHTML = `${totalGames}`;
 
 
 /*************************************************************************************
