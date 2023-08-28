@@ -25,27 +25,6 @@ function deleteChildElements(parent) {
 // grab the element with the id games-container
 const gamesContainer = document.getElementById("games-container");
 
-// create a function that adds all data from the games array to the page
-// function addGamesToPage(games) {
-
-//     // loop over each item in the data
-
-
-//         // create a new div element, which will become the game card
-
-
-//         // add the class game-card to the list
-
-
-//         // set the inner HTML using a template literal to display some info 
-//         // about each game
-//         // TIP: if your images are not displaying, make sure there is space
-//         // between the end of the src attribute and the end of the tag ("/>")
-
-
-//         // append the game to the games-container
-
-// }
 
 function addGamesToPage(games) {
 
@@ -197,7 +176,6 @@ descriptionContainer.appendChild(paragraph);
 
 
 
-
 /************************************************************************************
  * Challenge 7: Select & display the top 2 games
  * Skills used: spread operator, destructuring, template literals, sort 
@@ -212,6 +190,14 @@ const sortedGames =  GAMES_JSON.sort( (item1, item2) => {
 
 // use destructuring and the spread operator to grab the first and second games
 
+let [firstGame, secondGame, ...remainingGames] = sortedGames;
+
 // create a new element to hold the name of the top pledge game, then append it to the correct element
+const topRunnerName = document.createElement("div");
+topRunnerName.innerHTML = firstGame.name;
+firstGameContainer.appendChild(topRunnerName);
 
 // do the same for the runner up item
+const nextRunnerUppName = document.createElement("div");
+nextRunnerUppName.innerHTML = secondGame.name;
+secondGameContainer.appendChild(nextRunnerUppName);
